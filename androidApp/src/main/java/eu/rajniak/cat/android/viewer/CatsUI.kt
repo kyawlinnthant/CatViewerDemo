@@ -33,6 +33,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -220,7 +221,7 @@ fun CatsList(
 
     LazyVerticalGrid(
         state = listState,
-        cells = GridCells.Adaptive(minSize = 128.dp)
+        cells = GridCells.Adaptive(minSize = 150.dp)
     ) {
         itemsIndexed(cats) { _, cat ->
             CatItem(cat)
@@ -228,7 +229,7 @@ fun CatsList(
         item {
             CircularProgressIndicator(
                 // TODO: specify size instead to make progress smaller
-                modifier = Modifier.padding(48.dp)
+                modifier = Modifier.padding(16.dp)
             )
         }
     }
@@ -279,7 +280,8 @@ fun CatItem(cat: Cat) {
                     else -> "other"
                 }
             ),
-        contentDescription = null // TODO: we can fetch something interesting about the image
+        contentDescription = null, // TODO: we can fetch something interesting about the image
+    contentScale = ContentScale.Crop
     )
 }
 
